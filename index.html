@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>base_converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: left;
+        }
+
+        #calculator {
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            margin-left: 20px; /* Add left margin */
+        }
+
+        .input-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .input-description {
+            font-weight: bold;
+            flex: 1;
+        }
+
+        .input-box {
+            flex: 2;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>base_converter</h1>
+    <p style="margin: 0;">Author: Dustin_Chen, email: <a href="mailto:Dustin_Chen@compal.com" style="line-height: 1;">Dustin_Chen@compal.com</a> or <a href="mailto:chuhpsdustin@gmail.com" style="line-height: 1;">chuhpsdustin@gmail.com</a></p>
+<br>
+    <div id="calculator">
+        <div class="input-row">
+            <span class="input-description">Hexadecimal:</span>
+            <input class="input-box" id="hexInput" placeholder="Enter Hexadecimal number">
+        </div>
+        
+        <div class="input-row">
+            <span class="input-description">Decimal:</span>
+            <input class="input-box" id="decimalInput" placeholder="Enter Decimal number">
+        </div>
+        
+        <div class="input-row">
+            <span class="input-description">Binary:</span>
+            <input class="input-box" id="binaryInput" placeholder="Enter Binary number">
+        </div>
+    </div>
+
+    <script>
+        const hexInput = document.getElementById("hexInput");
+        const decimalInput = document.getElementById("decimalInput");
+        const binaryInput = document.getElementById("binaryInput");
+
+        hexInput.addEventListener("input", () => {
+            const value = hexInput.value.trim();
+            if (value !== "") {
+                decimalInput.value = parseInt(value, 16);
+                binaryInput.value = parseInt(value, 16).toString(2);
+            } else {
+                decimalInput.value = "";
+                binaryInput.value = "";
+            }
+        });
+
+        decimalInput.addEventListener("input", () => {
+            const value = decimalInput.value.trim();
+            if (value !== "") {
+                hexInput.value = parseInt(value, 10).toString(16).toUpperCase();
+                binaryInput.value = parseInt(value, 10).toString(2);
+            } else {
+                hexInput.value = "";
+                binaryInput.value = "";
+            }
+        });
+
+        binaryInput.addEventListener("input", () => {
+            const value = binaryInput.value.trim();
+            if (value !== "") {
+                hexInput.value = parseInt(value, 2).toString(16).toUpperCase();
+                decimalInput.value = parseInt(value, 2);
+            } else {
+                hexInput.value = "";
+                decimalInput.value = "";
+            }
+        });
+    </script>
+</body>
+</html>
